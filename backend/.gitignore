@@ -1,0 +1,6 @@
+node_modules
+.env
+
+/generated/prisma
+prisma/generated/
+skills-lock.jsonskills-lock.json
