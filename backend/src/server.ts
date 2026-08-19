@@ -7,7 +7,10 @@ import { registerRoutes } from "./routes/index.js";
 const app = Fastify({ logger: true });
 
 // Плагины
-await app.register(cors, { origin: "*" });
+await app.register(cors, {
+  origin: "http://localhost:5173",
+  credentials: true,
+});
 await app.register(helmet);
 
 // Роуты

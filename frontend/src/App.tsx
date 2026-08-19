@@ -1,17 +1,34 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import HomePage from "./pages/Home";
 import ContactPage from "./pages/Contact";
 import AdminPage from "./pages/Admin";
+import NavBar from "./components/NavBar";
+
+const AppLayout = () => {
+  return (
+    <div className="relative min-h-screen">
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
+        <NavBar />
+      </nav>
+
+      <main className="mt-20 pt-20">
+        <Outlet />
+      </main>
+    </div>
+  );
+};
 
 const AppContent = () => {
   return (
     <main>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/contact" element={<ContactPage />} />
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<ContactPage />} />
 
-        {/* Admin, добавить защиту */}
-        <Route path="/admin" element={<AdminPage />} />
+          {/* Admin, добавить защиту */}
+          <Route path="/admin" element={<AdminPage />} />
+        </Route>
       </Routes>
     </main>
   );
