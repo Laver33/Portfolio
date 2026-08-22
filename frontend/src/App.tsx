@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 const AppLayout = () => {
   return (
     <div className="relative min-h-screen">
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
+      <nav className="fixed top-4 left-0 right-0 z-50 px-6">
         <NavBar />
       </nav>
 

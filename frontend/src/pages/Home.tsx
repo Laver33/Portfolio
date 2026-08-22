@@ -1,6 +1,7 @@
 import About from "../components/About";
 import Experience from "../components/Experience";
 import MainInfo from "../components/MainInfo";
+import Portfolio from "../components/Portfolio";
 import TechStack from "../components/TechStack";
 import { FaBriefcase } from "react-icons/fa";
 
@@ -83,7 +84,9 @@ const HomePage = () => {
       </section>
 
       {/* Портфолио */}
-      <section></section>
+      <section className="w-2/3">
+        <Portfolio />
+      </section>
     </div>
   );
 };

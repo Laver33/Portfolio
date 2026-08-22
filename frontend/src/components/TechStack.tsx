@@ -223,8 +223,10 @@ const TechStack = () => {
                     initial={{ opacity: 0, x: randomX, y: randomY }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 1.5, delay: delayData }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 1.04 }}
+                    whileHover={{
+                      scale: 1.03,
+                      transition: { duration: 0.3 },
+                    }}
                     key={tech.id}
                     className={`py-2 px-3 cursor-pointer rounded-lg flex justify-center items-center gap-2 bg-${tech.color}-100 dark:bg-${tech.color}-900/20 border border-${tech.color}-200 dark:border-${tech.color}-800`}
                   >
