@@ -1,4 +1,4 @@
-import PortfolioImage from "../../public/image/anime2.png";
+import PortfolioImage from "/image/anime2.png";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaTelegram, FaInstagram } from "react-icons/fa";
 import type { IconType } from "react-icons/lib";

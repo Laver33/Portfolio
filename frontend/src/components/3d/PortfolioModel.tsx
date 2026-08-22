@@ -3,9 +3,10 @@ import { OrbitControls, useGLTF, Center } from "@react-three/drei";
 import { Suspense } from "react";
 
 const PortfolioModel = () => {
-  const modelCar =
-    "../../../public/models/car/free_1975_porsche_911_930_turbo.glb";
+  const modelCar = "/models/car/porsche.glb";
+
   const { scene } = useGLTF(modelCar);
+  useGLTF.preload("/models/car/porsche.glb");
 
   return (
     <div className="w-full h-65">
