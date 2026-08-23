@@ -3,6 +3,8 @@ import HomePage from "./pages/Home";
 import ContactPage from "./pages/Contact";
 import AdminPage from "./pages/Admin";
 import NavBar from "./components/NavBar";
+import { ToastContainer } from "react-toastify";
+import ProjectInfo from "./pages/Project_Info";
 
 const AppLayout = () => {
   return (
@@ -25,6 +27,7 @@ const AppContent = () => {
         <Route element={<AppLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/project/:id" element={<ProjectInfo />} />
 
           {/* Admin, добавить защиту */}
           <Route path="/admin" element={<AdminPage />} />
@@ -37,6 +40,7 @@ const AppContent = () => {
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <AppContent />
     </BrowserRouter>
   );

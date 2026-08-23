@@ -4,6 +4,7 @@ import MainInfo from "../components/MainInfo";
 import Portfolio from "../components/Portfolio";
 import TechStack from "../components/TechStack";
 import { FaBriefcase } from "react-icons/fa";
+import useGetData from "../hooks/getData";
 
 export interface iExperienceItem {
   id: number;
@@ -14,6 +15,8 @@ export interface iExperienceItem {
 }
 
 const HomePage = () => {
+  useGetData();
+
   // Опыт работы
   const experienceWorkData: iExperienceItem[] = [
     {
