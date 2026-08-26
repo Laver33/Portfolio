@@ -141,7 +141,7 @@ const TechStack = () => {
                       animate={{ opacity: 1, x: 0, y: 0 }}
                       transition={{ duration: 1.5, delay: delayData }}
                       key={skill.id}
-                      className={`py-3 px-3 shadow-md border cursor-pointer rounded-md flex justify-center items-center gap-2 duration-500 hover:scale-105 bg-white dark:bg-gray-800 ${colors.hover} ${colors.border}`}
+                      className={`py-3 px-3 shadow-md border cursor-pointer rounded-md flex justify-center items-center gap-2 hover:scale-105 bg-white dark:bg-gray-800 ${colors.hover} ${colors.border}`}
                     >
                       {Icon && <Icon className={colors.text} />}
                       <p className="text-sm font-medium">{skill.name}</p>

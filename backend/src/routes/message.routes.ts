@@ -10,7 +10,7 @@ export async function messageRoutes(fastify: FastifyInstance) {
   fastify.post<{
     Body: Message;
   }>(
-    "/message",
+    "/messages",
     {
       schema: {
         body: messageBodySchema,

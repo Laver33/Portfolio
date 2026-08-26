@@ -11,41 +11,41 @@ interface iSocial {
   title: string;
 }
 
+export const socialsData: iSocial[] = [
+  {
+    id: 1,
+    icon: FaLinkedin,
+    link: "https://www.linkedin.com/in/drabenia",
+    link_view: "linkedin/drabenia",
+    title: "Linkedin",
+  },
+  {
+    id: 2,
+    icon: FaGithub,
+    link: "https://github.com/Laver33",
+    link_view: "github.com/Laver33",
+    title: "Github",
+  },
+  {
+    id: 3,
+    icon: FaTelegram,
+    link: "https://t.me/TrueReady",
+    link_view: "t.me/TrueReady",
+    title: "Telegram",
+  },
+  {
+    id: 4,
+    icon: FaInstagram,
+    link: "https://www.instagram.com/_hofter_?igsh=MWFtbXF2Z2swcXcyaA%3D%3D&utm_source=qr",
+    link_view: "instagram/_hofter_",
+    title: "Instagram",
+  },
+];
+
 const MainInfo = () => {
   const fullName: string = "Pavel Drabenia";
   const About: string =
     "Frontend developer and former QA tester who decided to transition into full-stack development to build complete projects. I enjoy development. I currently position myself as a Junior Full-stack Developer. I have completed several full-stack projects and am continuing to reach new heights in my learning.";
-
-  const socialsData: iSocial[] = [
-    {
-      id: 1,
-      icon: FaLinkedin,
-      link: "https://www.linkedin.com/in/drabenia",
-      link_view: "linkedin/drabenia",
-      title: "Linkedin",
-    },
-    {
-      id: 2,
-      icon: FaGithub,
-      link: "https://github.com/Laver33",
-      link_view: "github.com/Laver33",
-      title: "Github",
-    },
-    {
-      id: 3,
-      icon: FaTelegram,
-      link: "https://t.me/TrueReady",
-      link_view: "t.me/TrueReady",
-      title: "Telegram",
-    },
-    {
-      id: 4,
-      icon: FaInstagram,
-      link: "https://www.instagram.com/_hofter_?igsh=MWFtbXF2Z2swcXcyaA%3D%3D&utm_source=qr",
-      link_view: "instagram/_hofter_",
-      title: "Instagram",
-    },
-  ];
 
   return (
     <motion.div

@@ -3,10 +3,12 @@ import api from "../service/api";
 
 interface iMessage {
   id?: string;
-  title: string;
+  name: string;
   email: string;
-  telegram?: string;
+  theme: string;
   message: string;
+
+  isRead?: boolean;
   createdAt?: Date;
 }
 
@@ -22,7 +24,7 @@ interface iMessageStore {
   deleteMessage: (id: string) => Promise<void>;
 }
 
-export const useContentStore = create<iMessageStore>()((set) => ({
+export const useMessageStore = create<iMessageStore>()((set) => ({
   messages: [],
   currentMessage: null,
   loading: false,
@@ -70,7 +72,7 @@ export const useContentStore = create<iMessageStore>()((set) => ({
     }
   },
 
-  createMessage: async (message: iMessage) => {
+  createMessage: async (message: Omit<iMessage, "id" | "createdAt">) => {
     try {
       set({ loading: true });
       const response = await api.post("/messages", message);
