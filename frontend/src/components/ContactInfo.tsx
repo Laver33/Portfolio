@@ -14,7 +14,7 @@ const ContactInfo = () => {
           key={item.id}
           href={item.link}
           target="_blank"
-          className="border-2 p-2 rounded-lg cursor-pointer max-h-30 text-black hover:shadow-xl duration-1000"
+          className="border-2 p-2 rounded-xl cursor-pointer max-h-30 text-black hover:shadow-xl duration-1000"
         >
           <header className="flex gap-2 items-center ">
             <item.icon />

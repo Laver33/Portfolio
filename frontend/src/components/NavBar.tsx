@@ -5,9 +5,33 @@ import { BsTranslate } from "react-icons/bs";
 import { FaGlobe } from "react-icons/fa";
 import { FaMusic, FaVolumeMute } from "react-icons/fa";
 import { useState } from "react";
+import useSound from "use-sound";
+import navClick from "../sounds/navBtnClick.mp3";
+import bgMusic from "../sounds/bgMusic.mp3";
 
 const NavBar = () => {
   const location = useLocation();
+
+  // Музыка
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const [click] = useSound(navClick, {
+    volume: 0.03,
+  });
+
+  const [play, { pause }] = useSound(bgMusic, {
+    volume: 0.03,
+    loop: true,
+  });
+
+  const musicToggle = () => {
+    if (isPlaying) {
+      pause();
+    } else {
+      play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   const navItems = [
     { name: "Главная", href: "/" },
@@ -39,7 +63,9 @@ const NavBar = () => {
       offIcon: FaVolumeMute,
       onIcon: FaMusic,
       isActive: isMusicOn,
-      click: () => setIsMusicOn(!isMusicOn),
+      click: () => {
+        (setIsMusicOn(!isMusicOn), musicToggle());
+      },
     },
   ];
 
@@ -48,7 +74,7 @@ const NavBar = () => {
       {/* Заглушка */}
       <div className="sm:w-5 md:w-50" />
 
-      {/* Навигация - в центре */}
+      {/* Навигация */}
       <div className="bg-white/80 backdrop-blur-md shadow-lg shadow-black/10 flex gap-1 p-1.5 rounded-2xl border border-white/20">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href;
@@ -68,6 +94,7 @@ const NavBar = () => {
               <Link
                 className="block px-4 py-2 font-medium text-sm"
                 to={item.href}
+                onClick={() => click()}
               >
                 {item.name}
               </Link>

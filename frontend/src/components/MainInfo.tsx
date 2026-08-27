@@ -51,12 +51,12 @@ const MainInfo = () => {
     <motion.div
       initial={{
         boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-        opacity: 0.3,
-        y: 20,
+        opacity: 0.5,
+        y: 10,
       }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.01, boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 1.5 }}
       className="flex rounded-2xl"
     >
       <div className="w-3/10 py-5 h-65 flex justify-center items-center">

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMessageStore } from "../store/messageStore";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 const feedbackMessageSchema = z.object({
   name: z.string().max(20, "Max length is 20").min(2, "Min length is 2"),
@@ -44,6 +45,7 @@ const ContactForm = () => {
 
   const onSubmit = async (data: FeedbackMessage) => {
     await createMessage(data);
+    toast.success("Спасибо за обратную связь!");
     reset();
   };
 
@@ -52,7 +54,7 @@ const ContactForm = () => {
       initial={{ opacity: 0.3, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1.2 }}
-      className="w-2/3  grid gap-4 p-6 rounded-2xl shadow-lg"
+      className="w-2/3  grid gap-4 p-6 rounded-xl shadow-lg border"
       onSubmit={handleSubmit(onSubmit)}
     >
       {formFields.map((field) => {
@@ -92,12 +94,12 @@ const ContactForm = () => {
       })}
 
       <motion.button
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.2 }}
         type="submit"
         disabled={isSubmitting}
-        className="mt-2 w-full hover:bg-blue-300 duration-1000 font-medium py-3 rounded-lg transition disabled:opacity-50"
+        className="mt-2 w-full shadow-sm hover:bg-blue-300 duration-1000 font-medium py-3 rounded-lg transition disabled:opacity-50"
       >
         {isSubmitting ? "Sending..." : "Send Message"}
       </motion.button>
