@@ -4,7 +4,7 @@ import type { Project } from "../validators/project.validator.js";
 
 const uploadsDir = "./uploads";
 
-export const getProject = async (
+export const getProjectById = async (
   request: FastifyRequest,
   reply: FastifyReply,
 ) => {

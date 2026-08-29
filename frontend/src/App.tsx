@@ -27,7 +27,7 @@ const AppContent = () => {
         <Route element={<AppLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/project/:id" element={<ProjectInfo />} />
+          <Route path="/projects/:id" element={<ProjectInfo />} />
 
           {/* Admin, добавить защиту */}
           <Route path="/admin" element={<AdminPage />} />

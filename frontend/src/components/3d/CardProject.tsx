@@ -1,11 +1,24 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text, Float } from "@react-three/drei";
-import { type iCardData } from "../Portfolio";
+import { OrbitControls, Text, Float, Image } from "@react-three/drei";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router";
+import useSound from "use-sound";
+import navClick from "../../sounds/navBtnClick.mp3";
 
-const CardProject = (props: { cardData: iCardData }) => {
+const CardProject = (props: { cardData: any }) => {
   const [hovered, setHovered] = useState(false);
   const meshRef = useRef<any>(null);
+
+  const navigate = useNavigate();
+
+  const [click] = useSound(navClick, {
+    volume: 0.03,
+  });
+
+  const handleSubmit = () => {
+    navigate(`/projects/${props.cardData.id}`);
+    click();
+  };
 
   return (
     <div className="w-full h-100">
@@ -48,30 +61,26 @@ const CardProject = (props: { cardData: iCardData }) => {
                 />
               </mesh>
             )}
+            {/* Изображение */}
+            <Image
+              url={props.cardData?.imageUrl || "/placeholder.png"}
+              position={[0, 1.2, 0.1]}
+              scale={[3.2, 2.2]}
+              transparent
+              opacity={1}
+              radius={0.1}
+            />
 
             {/* Название проекта */}
             <Text
-              position={[0, 1.6, 0.1]}
-              fontSize={0.55}
+              position={[0, -0.5, 0.1]}
+              fontSize={0.35}
               color="white"
               anchorX="center"
               anchorY="middle"
               fontWeight="bold"
             >
               {props.cardData?.title || "Название"}
-            </Text>
-
-            {/* Описание */}
-            <Text
-              position={[0, 0.6, 0.1]}
-              fontSize={0.28}
-              color="#94a3b8"
-              anchorX="center"
-              anchorY="middle"
-              maxWidth={3.8}
-              textAlign="center"
-            >
-              {props.cardData?.description || "Описание проекта"}
             </Text>
 
             {/* Кнопка  */}
@@ -95,7 +104,7 @@ const CardProject = (props: { cardData: iCardData }) => {
                 color={hovered ? "white" : "#94a3b8"}
                 anchorX="center"
                 anchorY="middle"
-                onClick={props.cardData.click}
+                onClick={handleSubmit}
                 fontWeight={hovered ? "bold" : "normal"}
               >
                 {hovered ? "Перейти →" : "Подробнее"}

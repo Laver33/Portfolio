@@ -6,7 +6,7 @@ interface iProject {
   title: string;
   description: string;
   stack: string[];
-  githubUrl?: string;
+  githubUrl: string;
   liveUrl?: string;
   imageUrl?: string;
   createdAt?: Date;
@@ -25,6 +25,7 @@ interface iSkill {
 
 interface iContentStore {
   projects: iProject[];
+  currentProject: iProject | null;
   skills: iSkill[];
   loading: boolean;
   error: string | null;
@@ -39,6 +40,7 @@ interface iContentStore {
 export const useContentStore = create<iContentStore>()((set) => ({
   projects: [],
   skills: [],
+  currentProject: null,
   loading: false,
   error: null,
 
@@ -112,8 +114,7 @@ export const useContentStore = create<iContentStore>()((set) => ({
     try {
       set({ loading: true, error: null });
       const response = await api.get(`/projects/${id}`);
-      set({ loading: false });
-      return response.data;
+      set({ loading: false, currentProject: response.data });
     } catch (error: any) {
       set({
         loading: false,
