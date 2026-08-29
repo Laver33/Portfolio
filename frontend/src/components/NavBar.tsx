@@ -4,16 +4,21 @@ import { IoPlanet, IoPlanetOutline } from "react-icons/io5";
 import { BsTranslate } from "react-icons/bs";
 import { FaGlobe } from "react-icons/fa";
 import { FaMusic, FaVolumeMute } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSound from "use-sound";
 import navClick from "../sounds/navBtnClick.mp3";
 import bgMusic from "../sounds/bgMusic.mp3";
 
 const NavBar = () => {
   const location = useLocation();
-
   // Музыка
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (isPlaying) {
+      play();
+    }
+  }, [isPlaying]);
 
   const [click] = useSound(navClick, {
     volume: 0.03,
@@ -41,7 +46,7 @@ const NavBar = () => {
   // Состояния
   const [isThemeOn, setIsThemeOn] = useState(false);
   const [isLanguageOn, setIsLanguageOn] = useState(false);
-  const [isMusicOn, setIsMusicOn] = useState(true);
+  const [isMusicOn, setIsMusicOn] = useState(false);
 
   const navStyle = [
     {

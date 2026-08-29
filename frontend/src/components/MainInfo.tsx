@@ -59,22 +59,23 @@ const MainInfo = () => {
       transition={{ duration: 1.5 }}
       className="flex rounded-2xl"
     >
-      <div className="w-3/10 py-5 h-65 flex justify-center items-center">
+      <div className="lg:w-3/10 md:w-2/10 py-5 md:h-35 lg:h-65 flex justify-center items-center">
         <img
-          className="rounded-xl h-full"
+          className="rounded-xl h-full "
           src={PortfolioImage}
           alt="portfolio image"
         />
       </div>
 
       <div className="w-7/10 py-5 flex flex-col gap-2">
-        <h1 className="text-2xl">
-          <span className="font-medium text-3xl">Hello!</span> I'm {fullName}
+        <h1 className="lg:text-2xl md:text-lg">
+          <span className="font-medium lg:text-3xl md:text-xl">Hello!</span> I'm{" "}
+          {fullName}
         </h1>
-        <p className="text-lg">{About}</p>
+        <p className="lg:text-lg md:text-sm">{About}</p>
 
         {/* социальные сети */}
-        <div className="flex gap-3 mt-2 w-full">
+        <div className="lg:flex md:grid gap-3 mt-2 w-full ">
           {socialsData.map((item) => (
             <a
               key={item.id}

@@ -2,14 +2,14 @@ import { create } from "zustand";
 import api from "../service/api";
 
 interface iProject {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   stack: string[];
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;
-  createdAt: Date;
+  createdAt?: Date;
 }
 
 interface iSkill {
@@ -33,6 +33,7 @@ interface iContentStore {
   fetchProjects: () => Promise<void>;
   fetchSkills: () => Promise<void>;
   getProjectById: (id: string) => Promise<iProject | undefined>;
+  postProject: (data: any, imageFile: File) => Promise<void>;
 }
 
 export const useContentStore = create<iContentStore>()((set) => ({
@@ -40,6 +41,39 @@ export const useContentStore = create<iContentStore>()((set) => ({
   skills: [],
   loading: false,
   error: null,
+
+  // Добавление проекта
+  postProject: async (data: any, imageFile: File) => {
+    try {
+      set({ loading: true, error: null });
+      const formData = new FormData();
+
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      const stackArray = data.stack
+        .split(",")
+        .map((item: string) => item.trim());
+
+      formData.append("stack", JSON.stringify(stackArray));
+      formData.append("githubUrl", data.githubUrl);
+      formData.append("liveUrl", data.liveUrl);
+      formData.append("image", imageFile);
+
+      const response = await api.post("/projects", formData);
+
+      set((state) => ({
+        projects: [...state.projects, response.data],
+        loading: false,
+      }));
+
+      return response.data;
+    } catch (error: any) {
+      set({
+        loading: false,
+        error: error.response?.data?.message || "Проект не создан",
+      });
+    }
+  },
 
   // Все проекты
   fetchProjects: async () => {
@@ -54,7 +88,6 @@ export const useContentStore = create<iContentStore>()((set) => ({
         loading: false,
         error: error.response?.data?.message || " Проекты не найдены",
       });
-      console.error("Error:", error);
     }
   },
 
@@ -71,7 +104,6 @@ export const useContentStore = create<iContentStore>()((set) => ({
         loading: false,
         error: error.response?.data?.message || "Скиллы не найдены",
       });
-      console.error("Error:", error);
     }
   },
 
@@ -87,7 +119,6 @@ export const useContentStore = create<iContentStore>()((set) => ({
         loading: false,
         error: error.response?.data?.message || "Проект не найден",
       });
-      console.error("Error:", error);
       return undefined;
     }
   },

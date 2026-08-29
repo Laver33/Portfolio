@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const ContactPage = () => {
   return (
     <div className="flex justify-center">
-      <section className="w-2/3">
+      <section className="lg:w-2/3 md:w-full">
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -15,7 +15,7 @@ const ContactPage = () => {
           Contacts
         </motion.h1>
 
-        <div className="flex gap-10">
+        <div className="gap-10 md:grid lg:flex">
           <ContactForm />
           <ContactInfo />
         </div>

@@ -1,13 +1,8 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { prisma } from "../lib/prisma.js";
 import type { Project } from "../validators/project.validator.js";
-import path from "path";
-import fs from "fs";
-import { uploadsDir } from "../paths.js";
 
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
+const uploadsDir = "./uploads";
 
 export const getProject = async (
   request: FastifyRequest,
@@ -47,53 +42,43 @@ export const postProject = async (
   reply: FastifyReply,
 ) => {
   try {
-    const parts = request.parts();
-    let file: any = null;
-    const fields: any = {};
+    const data: any = await request.file();
 
-    for await (const part of parts) {
-      if (part.type === "file") {
-        // файл
-        file = part;
-      } else {
-        // текстовое поле
-        fields[part.fieldname] = part.value;
-      }
+    if (!data) {
+      return reply.status(400).send({ message: "Файл не загружен" });
     }
+    const buffer = await data.toBuffer();
+
+    const base64Image = `data:${data.mimetype};base64,${buffer.toString("base64")}`;
 
     // @ts-ignore
-    const { title, description, stack, githubUrl, liveUrl } = request.body;
+    const title = data.fields.title?.value;
+    const description = data.fields.description?.value;
+    const stack = data.fields.stack?.value;
+    const githubUrl = data.fields.githubUrl?.value || null;
+    const liveUrl = data.fields.liveUrl?.value || null;
 
-    // Сохранение файла
-    let imageUrl = null;
-    if (file) {
-      const fileName = `${Date.now()}-${file.filename}`;
-      const filePath = path.join(uploadsDir, fileName);
-
-      // Сохранение на диск
-      const writeStream = fs.createWriteStream(filePath);
-      await new Promise((resolve, reject) => {
-        file.file.pipe(writeStream);
-        file.file.on("end", resolve);
-        file.file.on("error", reject);
-      });
-
-      imageUrl = `/uploads/${fileName}`;
+    let stackArray: string[] = [];
+    try {
+      stackArray = JSON.parse((stack?.value as string) || "[]");
+    } catch (e) {
+      stackArray = [];
     }
 
     const project = await prisma.project.create({
       data: {
         title,
         description,
-        stack: stack.split(",").map((item: string) => item.trim()),
+        stack: stackArray,
         githubUrl,
         liveUrl,
-        imageUrl,
+        imageUrl: base64Image,
       },
     });
 
-    reply.send(project);
+    reply.send(project).status(201);
   } catch (e: any) {
-    reply.code(500).send({ message: e.message });
+    console.error(e);
+    reply.status(500).send({ message: e.message });
   }
 };

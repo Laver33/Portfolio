@@ -54,7 +54,7 @@ const ContactForm = () => {
       initial={{ opacity: 0.3, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1.2 }}
-      className="w-2/3  grid gap-4 p-6 rounded-xl shadow-lg border"
+      className="lg:w-2/3 md:w-full  grid gap-4 p-6 rounded-xl shadow-lg border"
       onSubmit={handleSubmit(onSubmit)}
     >
       {formFields.map((field) => {

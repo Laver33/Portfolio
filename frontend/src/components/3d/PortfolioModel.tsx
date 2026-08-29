@@ -6,7 +6,7 @@ const PortfolioModel = () => {
   const modelCar = "/models/car/porsche.glb";
 
   const { scene } = useGLTF(modelCar);
-  useGLTF.preload("/models/car/porsche.glb");
+  useGLTF("/models/car/porsche.glb");
 
   return (
     <div className="w-full h-65">
@@ -16,6 +16,7 @@ const PortfolioModel = () => {
           position: [2, 1.2, 4],
           fov: 60,
         }}
+        dpr={[1, 2]}
       >
         {/* Белый фон */}
         <color attach="background" args={["#ffffff"]} />

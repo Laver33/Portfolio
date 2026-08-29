@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const ContactInfo = () => {
   return (
     <motion.div
-      className="w-1/3 grid gap-4 p-5 rounded-sm border"
+      className="lg:w-1/3 md:w-full grid gap-4 p-5 rounded-sm border"
       initial={{ opacity: 0.3, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.2 }}

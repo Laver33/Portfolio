@@ -3,14 +3,8 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import "dotenv/config";
 import { registerRoutes } from "./routes/index.js";
-import { fileURLToPath } from "url";
-import path from "path";
 import fastifyMultipart from "@fastify/multipart";
-import fastifyStatic from "@fastify/static";
-import { uploadsDir } from "./paths.js";
 
-export const __filename = fileURLToPath(import.meta.url);
-export const dirname = path.dirname(__filename);
 const app = Fastify({ logger: true });
 
 // Плагины
@@ -25,10 +19,7 @@ await app.register(fastifyMultipart, {
     fileSize: 5 * 1024 * 1024,
   },
 });
-await app.register(fastifyStatic, {
-  root: uploadsDir,
-  prefix: "/uploads/",
-});
+
 await app.register(helmet);
 
 // Роуты
