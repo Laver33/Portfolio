@@ -39,7 +39,7 @@ const Experience = (props: {
       transition={{ duration: 2, delay: 0.5 }}
       className="w-1/2"
     >
-      <header className="mb-14 flex gap-4 items-center font-medium text-3xl">
+      <header className="mb-14 flex gap-4 items-center font-medium text-2xl">
         <FaBriefcase className={textColorClass} />
         <h2>{props.title}</h2>
       </header>

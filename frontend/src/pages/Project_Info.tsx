@@ -59,7 +59,7 @@ const ProjectInfo = () => {
         >
           <header className="flex gap-3 w-full">
             <img
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg shadow-sm"
               src={currentProject?.imageUrl}
               alt={currentProject?.title || "Project"}
             />
@@ -90,7 +90,7 @@ const ProjectInfo = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2, duration: 1.5 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col justify-center items-center gap-3 p-5"
             >
               {currentProject?.liveUrl ? (
                 <Link to={currentProject.liveUrl} className={buttonStyle}>

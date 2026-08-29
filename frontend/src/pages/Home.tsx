@@ -21,17 +21,24 @@ const HomePage = () => {
   const experienceWorkData: iExperienceItem[] = [
     {
       id: 1,
-      title: "Frontend Developer",
-      company: "Company Name",
-      period: "2023 - Present",
-      time: "4 years",
+      title: "Auto QA",
+      company: "Роща разработки",
+      period: "June 2025 - September 2025",
+      time: "4 months",
     },
     {
       id: 2,
+      title: "Manual QA",
+      company: "Freelance",
+      period: "March 2025 - September 2025",
+      time: "7 months",
+    },
+    {
+      id: 3,
       title: "Frontend Developer",
-      company: "Company Name",
-      period: "2023 - Present",
-      time: "4 years",
+      company: "PREAX",
+      period: "December 2025 - July 2026",
+      time: "8 months",
     },
   ];
 
@@ -39,17 +46,24 @@ const HomePage = () => {
   const experienceEducateData: iExperienceItem[] = [
     {
       id: 1,
-      title: "Frontend Developer",
-      company: "Company Name",
-      period: "2023 - Present",
-      time: "4 years",
+      title: "Developer",
+      company: "GGKTTiD",
+      period: "2023 - 2026",
+      time: "3 years",
     },
     {
       id: 2,
-      title: "Frontend Developer",
-      company: "Company Name",
-      period: "2023 - Present",
-      time: "4 years",
+      title: "Mobile Developer",
+      company: "Self-taught",
+      period: "2024 - 2025",
+      time: "1 year",
+    },
+    {
+      id: 3,
+      title: "Fullstack Developer",
+      company: "Self-taught",
+      period: "2025 - present",
+      time: "1 year",
     },
   ];
 
