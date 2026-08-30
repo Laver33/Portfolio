@@ -25,6 +25,7 @@ import { FaNodeJs } from "react-icons/fa";
 import { TbBrandThreejs } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { useContentStore } from "../store/contentStore";
+import { useTranslation } from "react-i18next";
 
 const colorMap = {
   blue: {
@@ -102,17 +103,18 @@ const iconMap: Record<string, IconType> = {
 
 const TechStack = () => {
   const { skills } = useContentStore();
+  const { t } = useTranslation();
 
   const skillsArray = Array.isArray(skills) ? skills : [];
 
   if (skillsArray.length === 0) {
-    return <div className="text-center py-10">No skills found</div>;
+    return <div className="text-center py-10">{t("techStack.error")}</div>;
   }
   const categories = ["Frontend", "Backend", "Languages", "Tools"];
 
   return (
     <div>
-      <h2 className="text-3xl font-medium mb-14">Tech Stack</h2>
+      <h2 className="text-3xl font-medium mb-14">{t("techStack.title")}</h2>
       <div className="grid gap-5">
         {categories.map((category) => {
           // Фильтр

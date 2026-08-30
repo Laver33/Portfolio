@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import useSound from "use-sound";
 import navClick from "../../sounds/navBtnClick.mp3";
+import { useTranslation } from "react-i18next";
 
 const CardProject = (props: { cardData: any }) => {
   const [hovered, setHovered] = useState(false);
@@ -15,6 +16,7 @@ const CardProject = (props: { cardData: any }) => {
     volume: 0.03,
   });
 
+  const { t } = useTranslation();
   const handleSubmit = () => {
     navigate(`/projects/${props.cardData.id}`);
     click();
@@ -107,7 +109,7 @@ const CardProject = (props: { cardData: any }) => {
                 onClick={handleSubmit}
                 fontWeight={hovered ? "bold" : "normal"}
               >
-                {hovered ? "Перейти →" : "Подробнее"}
+                {hovered ? t("project.button") : t("project.hoverButton")}
               </Text>
             </group>
           </group>

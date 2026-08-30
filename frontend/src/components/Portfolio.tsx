@@ -1,5 +1,6 @@
 import CardProject from "./3d/CardProject";
 import { useContentStore } from "../store/contentStore";
+import { useTranslation } from "react-i18next";
 
 export interface iCardData {
   id: number;
@@ -9,10 +10,11 @@ export interface iCardData {
 
 const Portfolio = () => {
   const { projects } = useContentStore();
+  const { t } = useTranslation();
 
   return (
     <div>
-      <h2 className="text-3xl font-medium mb-14">Projects</h2>
+      <h2 className="text-3xl font-medium mb-14">{t("project.title")}</h2>
 
       {/* Само портфолио */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

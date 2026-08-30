@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import useSound from "use-sound";
 import navClick from "../sounds/navBtnClick.mp3";
 import bgMusic from "../sounds/bgMusic.mp3";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
   const location = useLocation();
@@ -38,15 +40,25 @@ const NavBar = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const navItems = [
-    { name: "Главная", href: "/" },
-    { name: "Контакты", href: "/contact" },
-  ];
-
   // Состояния
   const [isThemeOn, setIsThemeOn] = useState(false);
-  const [isLanguageOn, setIsLanguageOn] = useState(false);
   const [isMusicOn, setIsMusicOn] = useState(false);
+
+  // язык ( смена )
+  const { i18n, t } = useTranslation();
+  const [isLanguageOn, setIsLanguageOn] = useState(false);
+  const [language, setLanguage] = useState(i18n.language);
+
+  const toggleLanguage = () => {
+    const newLang = language === "ru" ? "en" : "ru";
+    i18n.changeLanguage(newLang);
+    setLanguage(newLang);
+  };
+
+  const navItems = [
+    { name: t("NavBar.main"), href: "/" },
+    { name: t("NavBar.contacts"), href: "/contact" },
+  ];
 
   const navStyle = [
     {
@@ -61,7 +73,11 @@ const NavBar = () => {
       offIcon: BsTranslate,
       onIcon: FaGlobe,
       isActive: isLanguageOn,
-      click: () => setIsLanguageOn(!isLanguageOn),
+      click: () => {
+        toast.success(t("toast.language"));
+        toggleLanguage();
+        setIsLanguageOn(!isLanguageOn);
+      },
     },
     {
       id: 3,

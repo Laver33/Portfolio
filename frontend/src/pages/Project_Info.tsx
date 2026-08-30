@@ -6,9 +6,11 @@ import useSound from "use-sound";
 import navClick from "../sounds/navBtnClick.mp3";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ProjectInfo = () => {
   const { id } = useParams();
+  const { t } = useTranslation();
   const { getProjectById, currentProject, loading } = useContentStore();
   const navigate = useNavigate();
 
@@ -31,9 +33,9 @@ const ProjectInfo = () => {
   const spanStyle = "text-black font-semibold";
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>{t("project.loading")}</div>;
   }
-  if (!currentProject) return <div>Project not found</div>;
+  if (!currentProject) return <div>{t("project.error")}</div>;
 
   return (
     <section className="flex justify-center items-center">
@@ -48,7 +50,7 @@ const ProjectInfo = () => {
             className="flex justify-center gap-1 border items-center text-lg shadow-md px-4 py-3 rounded-lg"
           >
             <IoMdArrowBack />
-            Back
+            {t("project.backButton")}
           </motion.button>
         </div>
         <motion.div

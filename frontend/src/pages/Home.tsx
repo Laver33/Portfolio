@@ -5,6 +5,7 @@ import Portfolio from "../components/Portfolio";
 import TechStack from "../components/TechStack";
 import { FaBriefcase } from "react-icons/fa";
 import useGetData from "../hooks/getData";
+import { useTranslation } from "react-i18next";
 
 export interface iExperienceItem {
   id: number;
@@ -16,29 +17,30 @@ export interface iExperienceItem {
 
 const HomePage = () => {
   useGetData();
+  const { t } = useTranslation();
 
   // Опыт работы
   const experienceWorkData: iExperienceItem[] = [
     {
       id: 1,
-      title: "Auto QA",
-      company: "Роща разработки",
-      period: "June 2025 - September 2025",
-      time: "4 months",
+      title: t("Work_experience.item1.title"),
+      company: t("Work_experience.item1.company"),
+      period: t("Work_experience.item1.period"),
+      time: t("Work_experience.item1.time"),
     },
     {
       id: 2,
-      title: "Manual QA",
-      company: "Freelance",
-      period: "March 2025 - September 2025",
-      time: "7 months",
+      title: t("Work_experience.item2.title"),
+      company: t("Work_experience.item2.company"),
+      period: t("Work_experience.item2.period"),
+      time: t("Work_experience.item2.time"),
     },
     {
       id: 3,
-      title: "Frontend Developer",
-      company: "PREAX",
-      period: "December 2025 - July 2026",
-      time: "8 months",
+      title: t("Work_experience.item3.title"),
+      company: t("Work_experience.item3.company"),
+      period: t("Work_experience.item3.period"),
+      time: t("Work_experience.item3.time"),
     },
   ];
 
@@ -46,24 +48,24 @@ const HomePage = () => {
   const experienceEducateData: iExperienceItem[] = [
     {
       id: 1,
-      title: "Developer",
-      company: "GGKTTiD",
-      period: "2023 - 2026",
-      time: "3 years",
+      title: t("Educate_experience.item1.title"),
+      company: t("Educate_experience.item1.company"),
+      period: t("Educate_experience.item1.period"),
+      time: t("Educate_experience.item1.time"),
     },
     {
       id: 2,
-      title: "Mobile Developer",
-      company: "Self-taught",
-      period: "2024 - 2025",
-      time: "1 year",
+      title: t("Educate_experience.item2.title"),
+      company: t("Educate_experience.item2.company"),
+      period: t("Educate_experience.item2.period"),
+      time: t("Educate_experience.item2.time"),
     },
     {
       id: 3,
-      title: "Fullstack Developer",
-      company: "Self-taught",
-      period: "2025 - present",
-      time: "1 year",
+      title: t("Educate_experience.item3.title"),
+      company: t("Educate_experience.item3.company"),
+      period: t("Educate_experience.item3.period"),
+      time: t("Educate_experience.item3.time"),
     },
   ];
 
@@ -80,7 +82,7 @@ const HomePage = () => {
         <Experience
           experienceData={experienceEducateData}
           initalPosition={-50}
-          title={"Educate Experience"}
+          title={t("Educate_experience.title")}
           lineColor={"blue"}
           delay={0}
           icon={FaBriefcase}
@@ -88,7 +90,7 @@ const HomePage = () => {
         <Experience
           experienceData={experienceWorkData}
           initalPosition={50}
-          title={"Work Experience"}
+          title={t("Work_experience.title")}
           lineColor={"green"}
           delay={0.5}
           icon={FaBriefcase}

@@ -1,0 +1,74 @@
+{
+  "techStack": {
+    "title": "Tech Stack",
+    "error": "No skills found"
+  },
+  "project": {
+    "title": "Projects",
+    "button": "Detail",
+    "hoverButton": "See more",
+    "backButton": "Back",
+    "loading": "Loading...",
+    "error": "Project not found"
+  },
+  "toast": {
+    "language": "Language changed"
+  },
+  "About": {
+    "title": "Current goal"
+  },
+  "NavBar": {
+    "main": "Main",
+    "contacts": "Contacts"
+  },
+  "MyInfo": {
+    "hello": "Hello!",
+    "welcome": "I'm Pavel Drabenia",
+    "about": "Frontend developer and former QA tester who decided to transition into full-stack development to build complete projects. I enjoy development. I currently position myself as a Junior Full-stack Developer. I have completed several full-stack projects and am continuing to reach new heights in my learning."
+  },
+  "Work_experience": {
+    "title": "Work Experience",
+    "item1": {
+      "title": "Auto QA",
+      "company": "Роща разработки",
+      "period": "June 2025 - September 2025",
+      "time": "4 months"
+    },
+    "item2": {
+      "title": "Manual QA",
+      "company": "Freelance",
+      "period": "March 2025 - September 2025",
+      "time": "7 months"
+    },
+    "item3": {
+      "title": "Frontend Developer",
+      "company": "PREAX",
+      "period": "December 2025 - July 2026",
+      "time": "8 months"
+    }
+  },
+  "Educate_experience": {
+    "title": "Educate Experience",
+    "item1": {
+      "id": 1,
+      "title": "Developer",
+      "company": "GGKTTiD",
+      "period": "2023 - 2026",
+      "time": "3 years"
+    },
+    "item2": {
+      "id": 2,
+      "title": "Mobile Developer",
+      "company": "Self-taught",
+      "period": "2024 - 2025",
+      "time": "1 year"
+    },
+    "item3": {
+      "id": 3,
+      "title": "Fullstack Developer",
+      "company": "Self-taught",
+      "period": "2025 - present",
+      "time": "1 year"
+    }
+  }
+}

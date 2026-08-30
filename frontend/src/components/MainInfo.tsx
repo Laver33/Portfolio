@@ -1,5 +1,6 @@
 import PortfolioImage from "/image/anime2.png";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { FaLinkedin, FaGithub, FaTelegram, FaInstagram } from "react-icons/fa";
 import type { IconType } from "react-icons/lib";
 
@@ -43,9 +44,7 @@ export const socialsData: iSocial[] = [
 ];
 
 const MainInfo = () => {
-  const fullName: string = "Pavel Drabenia";
-  const About: string =
-    "Frontend developer and former QA tester who decided to transition into full-stack development to build complete projects. I enjoy development. I currently position myself as a Junior Full-stack Developer. I have completed several full-stack projects and am continuing to reach new heights in my learning.";
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -69,10 +68,12 @@ const MainInfo = () => {
 
       <div className="w-7/10 py-5 flex flex-col gap-2">
         <h1 className="lg:text-2xl md:text-lg">
-          <span className="font-medium lg:text-3xl md:text-xl">Hello!</span> I'm{" "}
-          {fullName}
+          <span className="font-medium lg:text-3xl md:text-xl">
+            {t("MyInfo.hello")}
+          </span>{" "}
+          {t("MyInfo.welcome")}
         </h1>
-        <p className="lg:text-lg md:text-sm">{About}</p>
+        <p className="lg:text-lg md:text-sm">{t("MyInfo.about")}</p>
 
         {/* социальные сети */}
         <div className="lg:flex md:grid gap-3 mt-2 w-full ">
