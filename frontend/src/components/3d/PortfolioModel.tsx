@@ -1,9 +1,11 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Center } from "@react-three/drei";
 import { Suspense } from "react";
+import { useTheme } from "../../hooks/useTheme";
 
 const PortfolioModel = () => {
   const modelCar = "/models/car/porsche.glb";
+  const { isThemeOn } = useTheme();
 
   const { scene } = useGLTF(modelCar);
   useGLTF("/models/car/porsche.glb");
@@ -19,7 +21,11 @@ const PortfolioModel = () => {
         dpr={[1, 2]}
       >
         {/* Белый фон */}
-        <color attach="background" args={["#ffffff"]} />
+        {isThemeOn ? (
+          <color attach="background" args={["#000000"]} />
+        ) : (
+          <color attach="background" args={["#ffffff"]} />
+        )}
 
         {/* Свет */}
         <ambientLight intensity={0.3} />

@@ -10,8 +10,10 @@ import navClick from "../sounds/navBtnClick.mp3";
 import bgMusic from "../sounds/bgMusic.mp3";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { useTheme } from "../hooks/useTheme";
 
 const NavBar = () => {
+  const { isThemeOn, toggleTheme } = useTheme();
   const location = useLocation();
   // Музыка
   const [isPlaying, setIsPlaying] = useState(false);
@@ -40,8 +42,6 @@ const NavBar = () => {
     setIsPlaying(!isPlaying);
   };
 
-  // Состояния
-  const [isThemeOn, setIsThemeOn] = useState(false);
   const [isMusicOn, setIsMusicOn] = useState(false);
 
   // язык ( смена )
@@ -66,7 +66,7 @@ const NavBar = () => {
       offIcon: IoPlanetOutline,
       onIcon: IoPlanet,
       isActive: isThemeOn,
-      click: () => setIsThemeOn(!isThemeOn),
+      click: () => toggleTheme(),
     },
     {
       id: 2,
@@ -96,7 +96,7 @@ const NavBar = () => {
       <div className="sm:w-5 md:w-50" />
 
       {/* Навигация */}
-      <div className="bg-white/80 backdrop-blur-md shadow-lg shadow-black/10 flex gap-1 p-1.5 rounded-2xl border border-white/20">
+      <div className="bg-white/80 backdrop-blur-md shadow-lg shadow-black/10 dark:bg-black dark:shadow-white/10 flex gap-1 p-1.5 rounded-2xl border border-white/20">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href;
 
@@ -108,7 +108,7 @@ const NavBar = () => {
               transition={{ duration: 0.2 }}
               className={`rounded-xl transition-colors duration-200 ${
                 isActive
-                  ? "bg-black text-white"
+                  ? "bg-black text-white dark:bg-white dark:text-black"
                   : "hover:bg-black/5 text-gray-700"
               }`}
             >
@@ -125,7 +125,7 @@ const NavBar = () => {
       </div>
 
       {/* Настройки - справа */}
-      <div className="bg-white/80 backdrop-blur-md shadow-lg shadow-black/10 flex gap-1 p-1.5 rounded-2xl border border-white/20">
+      <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-lg shadow-black/10 flex gap-1 p-1.5 rounded-2xl border border-white/20">
         {navStyle.map((item) => (
           <motion.div
             key={item.id}

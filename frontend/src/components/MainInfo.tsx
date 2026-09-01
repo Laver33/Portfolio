@@ -56,7 +56,7 @@ const MainInfo = () => {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.01, boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" }}
       transition={{ duration: 1.5 }}
-      className="flex rounded-2xl"
+      className="flex rounded-2xl dark:border-2"
     >
       <div className="lg:w-3/10 md:w-2/10 py-5 md:h-35 lg:h-65 flex justify-center items-center">
         <img
@@ -82,7 +82,7 @@ const MainInfo = () => {
               key={item.id}
               href={item.link}
               target="_blank"
-              className="border-2 p-2 rounded-lg cursor-pointer text-black hover:bg-black hover:text-white duration-1000"
+              className="border-2 p-2 rounded-lg cursor-pointer dark:text-white text-black hover:bg-black hover:text-white duration-1000"
             >
               <header className="flex gap-2 items-center ">
                 <item.icon />

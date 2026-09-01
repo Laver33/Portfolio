@@ -32,52 +32,67 @@ const colorMap = {
     bg: "bg-blue-100 dark:bg-blue-900/20",
     border: "border-blue-200 dark:border-blue-800",
     text: "text-blue-500 dark:text-blue-400",
-    hover: "hover:bg-blue-200",
+    hover: "hover:bg-blue-200 dark:hover:bg-blue-700/50",
+    dark: "dark:bg-blue-200",
+    hoverText: "dark:hover:text-black",
   },
   orange: {
     bg: "bg-orange-100 dark:bg-orange-900/20",
     border: "border-orange-200 dark:border-orange-800",
     text: "text-orange-500 dark:text-orange-400",
-    hover: "hover:bg-orange-200",
+    hover: "hover:bg-orange-200 dark:hover:bg-orange-700/50",
+    dark: "dark:bg-blue-200",
+    hoverText: "dark:hover:text-black",
   },
   amber: {
     bg: "bg-amber-100 dark:bg-amber-900/20",
     border: "border-amber-200 dark:border-amber-800",
     text: "text-amber-500 dark:text-amber-400",
-    hover: "hover:bg-amber-200",
+    hover: "hover:bg-amber-200 dark:hover:bg-amber-700/50",
+    dark: "dark:bg-blue-200",
+    hoverText: "dark:hover:text-black",
   },
   purple: {
     bg: "bg-purple-100 dark:bg-purple-900/20",
     border: "border-purple-200 dark:border-purple-800",
     text: "text-purple-500 dark:text-purple-400",
-    hover: "hover:bg-purple-200",
+    hover: "hover:bg-purple-200 dark:hover:bg-purple-700/50",
+    dark: "dark:bg-blue-200",
+    hoverText: "dark:hover:text-black",
   },
   green: {
     bg: "bg-green-100 dark:bg-green-900/20",
     border: "border-green-200 dark:border-green-800",
     text: "text-green-500 dark:text-green-400",
-    hover: "hover:bg-green-200",
+    hover: "hover:bg-green-200 dark:hover:bg-green-700/50",
+    dark: "dark:bg-blue-200",
+    hoverText: "dark:hover:text-black",
   },
   yellow: {
     bg: "bg-yellow-100 dark:bg-yellow-900/20",
     border: "border-yellow-200 dark:border-yellow-800",
     text: "text-yellow-500 dark:text-yellow-400",
-    hover: "hover:bg-yellow-200",
+    hover: "hover:bg-yellow-200 dark:hover:bg-yellow-700/50",
+    dark: "dark:bg-blue-200",
+    hoverText: "dark:hover:text-black",
   },
   red: {
     bg: "bg-red-100 dark:bg-red-900/20",
     border: "border-red-200 dark:border-red-800",
     text: "text-red-500 dark:text-red-400",
-    hover: "hover:bg-red-200",
+    hover: "hover:bg-red-200 dark:hover:bg-red-700/50",
+    dark: "dark:bg-blue-200",
+    hoverText: "dark:hover:text-black",
   },
   black: {
     bg: "bg-gray-100 dark:bg-gray-800/20",
     border: "border-gray-200 dark:border-gray-700",
     text: "text-gray-800 dark:text-gray-300",
-    hover: "hover:bg-gray-200",
+    hover: "hover:bg-gray-200 dark:hover:bg-gray-700/50",
+    dark: "dark:bg-blue-200",
+    hoverText: "dark:hover:text-black",
   },
 };
-
 const iconMap: Record<string, IconType> = {
   RiReactjsLine: RiReactjsLine,
   RiTailwindCssFill: RiTailwindCssFill,
@@ -143,7 +158,7 @@ const TechStack = () => {
                       animate={{ opacity: 1, x: 0, y: 0 }}
                       transition={{ duration: 1.5, delay: delayData }}
                       key={skill.id}
-                      className={`py-3 px-3 shadow-md border cursor-pointer rounded-md flex justify-center items-center gap-2 hover:scale-105 bg-white dark:bg-gray-800 ${colors.hover} ${colors.border}`}
+                      className={`py-3 px-3 shadow-md border cursor-pointer rounded-md flex justify-center items-center gap-2 hover:scale-105 bg-white dark:bg-gray-800 ${colors.dark} ${colors.hover} ${colors.border} group`}
                     >
                       {Icon && <Icon className={colors.text} />}
                       <p className="text-sm font-medium">{skill.name}</p>

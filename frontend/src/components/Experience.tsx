@@ -76,10 +76,12 @@ const Experience = (props: {
                 transition: { duration: 0.2 },
               }}
               key={item.id}
-              className="flex w-full justify-between items-center p-4 bg-white shadow-md rounded-lg border border-gray-100 hover:shadow-xl transition-shadow"
+              className="flex w-full justify-between items-center p-4 dark:shadow-gray-600 bg-white shadow-md rounded-lg border border-gray-100 hover:shadow-xl transition-shadow"
             >
               <div>
-                <h3 className="text-xl font-semibold">{item.title}</h3>
+                <h3 className="text-xl font-semibold dark:text-black">
+                  {item.title}
+                </h3>
                 <p className="text-sm text-gray-600">{item.company}</p>
               </div>
 

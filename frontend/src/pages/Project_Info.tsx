@@ -30,7 +30,7 @@ const ProjectInfo = () => {
   const buttonStyle =
     "py-2 px-5 shadow-sm w-full rounded-lg border text-center";
   const buttonDisabledStyle = "text-gray-400 cursor-not-allowed";
-  const spanStyle = "text-black font-semibold";
+  const spanStyle = "text-black font-semibold dark:text-white";
 
   if (loading) {
     return <div>{t("project.loading")}</div>;
@@ -53,11 +53,13 @@ const ProjectInfo = () => {
             {t("project.backButton")}
           </motion.button>
         </div>
+
+        {/* Контент */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2 }}
-          className="w-9/10 shadow-md rounded-lg grid gap-2 p-5 border"
+          className="w-9/10 shadow-md rounded-lg dark:border-gray-800 grid gap-2 p-5 border"
         >
           <header className="flex gap-3 w-full">
             <img
@@ -70,17 +72,17 @@ const ProjectInfo = () => {
           <div className="mt-5 flex">
             <div className="w-8/10">
               <p className="text-xl mb-2">{currentProject?.title}</p>
-              <p className="line-clamp-3">
+              <p className="line-clamp-3 dark:text-gray-300">
                 <span className={spanStyle}>Описание:</span>{" "}
                 {currentProject?.description}
               </p>
-              <p>
+              <p className="dark:text-gray-300">
                 <span className={spanStyle}>Стек проекта:</span>{" "}
                 {currentProject?.stack.length
                   ? currentProject?.stack.join(", ")
                   : "Не указан"}
               </p>
-              <p>
+              <p className="dark:text-gray-300">
                 <span className={spanStyle}>Добавлен: </span>{" "}
                 {currentProject?.createdAt
                   ? new Date(currentProject.createdAt).toLocaleDateString()

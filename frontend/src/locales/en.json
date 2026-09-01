@@ -1,4 +1,7 @@
 {
+  "constacts": {
+    "title": "Contacts"
+  },
   "techStack": {
     "title": "Tech Stack",
     "error": "No skills found"
