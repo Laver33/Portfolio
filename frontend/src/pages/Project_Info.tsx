@@ -48,7 +48,7 @@ const ProjectInfo = () => {
             transition={{ duration: 1.2 }}
             whileHover={{ scale: 1.03 }}
             onClick={backSubmit}
-            className="flex justify-center gap-1 border items-center text-lg shadow-md px-4 py-3 rounded-lg w-full md:w-auto"
+            className="flex justify-center z-50 gap-1 border items-center text-lg shadow-md px-4 py-3 rounded-lg w-full md:w-auto"
           >
             <IoMdArrowBack />
             {t("project.backButton")}
@@ -57,10 +57,18 @@ const ProjectInfo = () => {
 
         {/* Контент */}
         <motion.div
+          drag={true}
+          dragConstraints={{
+            left: -180,
+            right: 180,
+            top: -30,
+            bottom: 30,
+          }}
+          dragMomentum={false}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2 }}
-          className="w-full md:w-9/10 shadow-md rounded-lg dark:border-gray-800 grid gap-2 p-3 sm:p-5 border"
+          className="w-full md:w-9/10 shadow-md z-40 rounded-lg dark:border-gray-800 grid gap-2 p-3 sm:p-5 border"
         >
           <header className="flex gap-3 w-full">
             <img

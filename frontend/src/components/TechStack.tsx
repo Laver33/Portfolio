@@ -154,6 +154,14 @@ const TechStack = () => {
 
                   return (
                     <motion.div
+                      drag={true}
+                      dragConstraints={{
+                        left: -150,
+                        right: 150,
+                        top: -150,
+                        bottom: 150,
+                      }}
+                      dragMomentum={false}
                       initial={{ opacity: 0, x: randomX, y: randomY }}
                       animate={{ opacity: 1, x: 0, y: 0 }}
                       transition={{ duration: 1.5, delay: delayData }}
