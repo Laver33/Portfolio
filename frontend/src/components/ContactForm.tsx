@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMessageStore } from "../store/messageStore";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import useSound from "use-sound";
+import navClick from "../sounds/keyClickV2.mp3";
 
 const feedbackMessageSchema = z.object({
   name: z.string().max(20, "Max length is 20").min(2, "Min length is 2"),
@@ -26,6 +28,10 @@ const formFields = [
 ] as const;
 
 const ContactForm = () => {
+  const [play] = useSound(navClick, {
+    volume: 0.2,
+  });
+
   const {
     register,
     handleSubmit,
@@ -56,6 +62,7 @@ const ContactForm = () => {
       transition={{ duration: 1.2 }}
       className="lg:w-2/3 md:w-full  grid gap-4 p-6 rounded-xl shadow-lg border"
       onSubmit={handleSubmit(onSubmit)}
+      onChange={() => play()}
     >
       {formFields.map((field) => {
         const error = errors[field.id];

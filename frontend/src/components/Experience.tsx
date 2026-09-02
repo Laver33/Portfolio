@@ -37,14 +37,14 @@ const Experience = (props: {
       initial={{ opacity: 0, x: props.initalPosition }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 2, delay: 0.5 }}
-      className="w-1/2"
+      className="w-full md:w-1/2"
     >
-      <header className="mb-14 flex gap-4 items-center font-medium text-2xl">
+      <header className="mb-14 flex gap-4 items-center font-medium lg:text-2xl sm:text-lg">
         <FaBriefcase className={textColorClass} />
         <h2>{props.title}</h2>
       </header>
 
-      <div className="flex w-full gap-8">
+      <div className="flex w-full gap-4 md:gap-8">
         {/* Линия  */}
         <div className="relative">
           <div className={`w-0.5 h-full ${lineColorClass} opacity-20`} />
@@ -61,7 +61,7 @@ const Experience = (props: {
         </div>
 
         {/* Контент */}
-        <div className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-4 md:gap-6 w-full">
           {props.experienceData.map((item, index) => (
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -76,16 +76,16 @@ const Experience = (props: {
                 transition: { duration: 0.2 },
               }}
               key={item.id}
-              className="flex w-full justify-between items-center p-4 dark:shadow-gray-600 bg-white shadow-md rounded-lg border border-gray-100 hover:shadow-xl transition-shadow"
+              className="flex flex-col sm:flex-row w-full justify-between items-start sm:items-center p-3 sm:p-4 dark:shadow-gray-600 bg-white shadow-md rounded-lg border border-gray-100 hover:shadow-xl transition-shadow"
             >
-              <div>
-                <h3 className="text-xl font-semibold dark:text-black">
+              <div className="w-full sm:w-auto">
+                <h3 className="lg:text-xl sm:text-lg font-semibold dark:text-black">
                   {item.title}
                 </h3>
                 <p className="text-sm text-gray-600">{item.company}</p>
               </div>
 
-              <div className="text-right shrink-0 ml-4">
+              <div className="text-left sm:text-right shrink-0 ml-0 sm:ml-4 mt-2 sm:mt-0">
                 <p className="font-medium text-sm">{item.period}</p>
                 <p className="text-sm text-gray-500">({item.time})</p>
               </div>

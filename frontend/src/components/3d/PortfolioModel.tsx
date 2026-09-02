@@ -1,18 +1,22 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Center } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useTheme } from "../../hooks/useTheme";
 
 const PortfolioModel = () => {
   const modelCar = "/models/car/porsche.glb";
   const { isThemeOn } = useTheme();
 
+  useEffect(() => {}, [isThemeOn]);
+
+  const theme: boolean = isThemeOn;
   const { scene } = useGLTF(modelCar);
   useGLTF("/models/car/porsche.glb");
 
   return (
     <div className="w-full h-65">
       <Canvas
+        key={theme ? "dark" : "light"}
         className="w-full h-full"
         camera={{
           position: [2, 1.2, 4],
@@ -21,11 +25,7 @@ const PortfolioModel = () => {
         dpr={[1, 2]}
       >
         {/* Белый фон */}
-        {isThemeOn ? (
-          <color attach="background" args={["#000000"]} />
-        ) : (
-          <color attach="background" args={["#ffffff"]} />
-        )}
+        <color attach="background" args={[theme ? "#000000" : "#ffffff"]} />
 
         {/* Свет */}
         <ambientLight intensity={0.3} />

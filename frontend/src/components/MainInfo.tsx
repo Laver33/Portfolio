@@ -56,27 +56,29 @@ const MainInfo = () => {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.01, boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" }}
       transition={{ duration: 1.5 }}
-      className="flex rounded-2xl dark:border-2"
+      className="flex flex-col md:flex-row rounded-2xl dark:border-2"
     >
       <div className="lg:w-3/10 md:w-2/10 py-5 md:h-35 lg:h-65 flex justify-center items-center">
         <img
-          className="rounded-xl h-full "
+          className="rounded-xl h-full w-auto"
           src={PortfolioImage}
           alt="portfolio image"
         />
       </div>
 
-      <div className="w-7/10 py-5 flex flex-col gap-2">
-        <h1 className="lg:text-2xl md:text-lg">
+      <div className="w-full md:w-7/10 py-5 flex flex-col gap-2">
+        <h1 className="lg:text-2xl md:text-lg text-center md:text-left">
           <span className="font-medium lg:text-3xl md:text-xl">
             {t("MyInfo.hello")}
           </span>{" "}
           {t("MyInfo.welcome")}
         </h1>
-        <p className="lg:text-lg md:text-sm">{t("MyInfo.about")}</p>
+        <p className="lg:text-lg md:text-sm text-center md:text-left">
+          {t("MyInfo.about")}
+        </p>
 
         {/* социальные сети */}
-        <div className="lg:flex md:grid gap-3 mt-2 w-full ">
+        <div className="grid grid-cols-2 lg:flex gap-3 mt-2 w-full">
           {socialsData.map((item) => (
             <a
               key={item.id}
@@ -84,11 +86,11 @@ const MainInfo = () => {
               target="_blank"
               className="border-2 p-2 rounded-lg cursor-pointer dark:text-white text-black hover:bg-black hover:text-white duration-1000"
             >
-              <header className="flex gap-2 items-center ">
+              <header className="flex gap-2 items-center">
                 <item.icon />
                 <p className="font-medium">{item.title}</p>
               </header>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm truncate">
                 {item.link_view?.length == undefined
                   ? item.link.slice(item.link.lastIndexOf("/"))
                   : item.link_view}

@@ -29,7 +29,7 @@ const NavBar = () => {
   });
 
   const [play, { pause }] = useSound(bgMusic, {
-    volume: 0.03,
+    volume: 0.02,
     loop: true,
   });
 
