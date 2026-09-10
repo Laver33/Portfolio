@@ -2,8 +2,6 @@ import type { FastifyReply, FastifyRequest } from "fastify";
 import { prisma } from "../lib/prisma.js";
 import type { Project } from "../validators/project.validator.js";
 
-const uploadsDir = "./uploads";
-
 export const getProjectById = async (
   request: FastifyRequest,
   reply: FastifyReply,
@@ -80,5 +78,25 @@ export const postProject = async (
   } catch (e: any) {
     console.error(e);
     reply.status(500).send({ message: e.message });
+  }
+};
+
+export const deleteProject = async (
+  request: FastifyRequest,
+  reply: FastifyReply,
+) => {
+  try {
+    const { id } = request.params as { id: string };
+    const project = await prisma.project.delete({
+      where: { id },
+    });
+
+    if (!project) {
+      reply.code(404).send({ message: "Проект не найден" });
+    }
+
+    reply.send(project);
+  } catch (e: any) {
+    reply.code(500).send({ message: e.message });
   }
 };

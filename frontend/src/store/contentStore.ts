@@ -2,7 +2,7 @@ import { create } from "zustand";
 import api from "../service/api";
 
 interface iProject {
-  id?: string;
+  id: string;
   title: string;
   description: string;
   stack: string[];
@@ -35,6 +35,7 @@ interface iContentStore {
   fetchSkills: () => Promise<void>;
   getProjectById: (id: string) => Promise<iProject | undefined>;
   postProject: (data: any, imageFile: File) => Promise<void>;
+  deleteProjectById: (id: string) => Promise<void>;
 }
 
 export const useContentStore = create<iContentStore>()((set) => ({
@@ -43,6 +44,26 @@ export const useContentStore = create<iContentStore>()((set) => ({
   currentProject: null,
   loading: false,
   error: null,
+
+  // Удаление проекта
+  deleteProjectById: async (id: string) => {
+    try {
+      set({ loading: true, error: null });
+      const response = await api.delete(`/projects/${id}`);
+
+      set((state) => ({
+        projects: state.projects.filter((project) => project.id !== id),
+        loading: false,
+      }));
+
+      return response.data;
+    } catch (error: any) {
+      set({
+        loading: false,
+        error: error.response?.data?.message || "Проект не найден",
+      });
+    }
+  },
 
   // Добавление проекта
   postProject: async (data: any, imageFile: File) => {

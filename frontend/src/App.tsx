@@ -12,6 +12,7 @@ import NavBar from "./components/NavBar";
 import { ToastContainer } from "react-toastify";
 import ProjectInfo from "./pages/Project_Info";
 import { motion, AnimatePresence } from "framer-motion";
+import AdminEditProjectPage from "./pages/AdminEditProject";
 
 // Тут навигация
 const AppLayout = () => {
@@ -53,6 +54,7 @@ const AppContent = () => {
             }
           />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/edit/:id" element={<AdminEditProjectPage />} />
         </Route>
       </Routes>
     </main>
