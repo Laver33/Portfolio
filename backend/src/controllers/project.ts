@@ -100,3 +100,50 @@ export const deleteProject = async (
     reply.code(500).send({ message: e.message });
   }
 };
+
+export const updateProject = async (
+  request: FastifyRequest<{ Body: Project }>,
+  reply: FastifyReply,
+) => {
+  try {
+    const { id } = request.params as { id: string };
+    const data: any = await request.file();
+
+    if (!data) {
+      return reply.status(400).send({ message: "Файл не загружен" });
+    }
+    const buffer = await data.toBuffer();
+
+    const base64Image = `data:${data.mimetype};base64,${buffer.toString("base64")}`;
+
+    const title = data.fields.title?.value;
+    const description = data.fields.description?.value;
+    const stack = data.fields.stack?.value;
+    const githubUrl = data.fields.githubUrl?.value || null;
+    const liveUrl = data.fields.liveUrl?.value || null;
+
+    let stackArray: string[] = [];
+    try {
+      stackArray = JSON.parse((stack as string) || "[]");
+    } catch (e) {
+      stackArray = [];
+    }
+
+    const project = await prisma.project.update({
+      where: { id },
+      data: {
+        title,
+        description,
+        stack: stackArray,
+        githubUrl,
+        liveUrl,
+        imageUrl: base64Image,
+      },
+    });
+
+    reply.send(project);
+  } catch (e: any) {
+    console.error(e);
+    reply.status(500).send({ message: e.message });
+  }
+};

@@ -36,6 +36,7 @@ interface iContentStore {
   getProjectById: (id: string) => Promise<iProject | undefined>;
   postProject: (data: any, imageFile: File) => Promise<void>;
   deleteProjectById: (id: string) => Promise<void>;
+  updateProjectById: (id: string, data: any) => Promise<void>;
 }
 
 export const useContentStore = create<iContentStore>()((set) => ({
@@ -142,6 +143,27 @@ export const useContentStore = create<iContentStore>()((set) => ({
         error: error.response?.data?.message || "Проект не найден",
       });
       return undefined;
+    }
+  },
+
+  updateProjectById: async (id: string, data: any) => {
+    try {
+      set({ loading: true, error: null });
+      const response = await api.put(`/projects/${id}`, data);
+
+      set((state) => ({
+        projects: state.projects.map((project) =>
+          project.id === id ? response.data : project,
+        ),
+        loading: false,
+      }));
+
+      return response.data;
+    } catch (error: any) {
+      set({
+        loading: false,
+        error: error.response?.data?.message || "Проект не найден",
+      });
     }
   },
 }));

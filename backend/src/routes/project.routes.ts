@@ -6,4 +6,5 @@ export async function projectRoutes(fastify: FastifyInstance) {
   fastify.get("/projects", projectController.getProjects);
   fastify.post("/projects", projectController.postProject);
   fastify.delete("/projects/:id", projectController.deleteProject);
+  fastify.put("/projects/:id", projectController.updateProject);
 }

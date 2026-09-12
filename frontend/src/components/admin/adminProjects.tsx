@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 const AdminProjects = () => {
   const { projects, deleteProjectById } = useContentStore();
 
-  const deleteHandler = (id: string) => {
+  const deleteHandler = async (id: string) => {
     deleteProjectById(id);
   };
 
@@ -16,23 +16,23 @@ const AdminProjects = () => {
     <div className="w-4/10">
       <h1 className="text-2xl">Проекты</h1>
 
-      <div className="grid gap-5 mt-5">
+      <div className="grid mt-5 gap-5 max-h-150 w-full overflow-y-auto overflow-x-hidden">
         {projects.map((project) => (
           <motion.div
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 1.2 }}
             key={project.id}
-            className="p-2 border shadow cursor-default rounded-lg"
+            className="p-5 mx-1 border shadow cursor-default rounded-lg"
           >
             <h2 className="text-xl font-medium">{project.title}</h2>
-            <p>{project.description.slice(0, 100)}</p>
-            <p>Стек: {project.stack.join(", ")}</p>
+            <p className="break-all">{project.description.slice(0, 100)}</p>
+            <p>Стек: {project.stack.join(", ") ?? "Нет стека"}</p>
             <p>
               <span className="font-medium">GitHub: </span>
               {project.githubUrl}
             </p>
             {project.liveUrl && (
-              <p>
+              <p className="break-all">
                 Live:{" "}
                 <a href={project.liveUrl} target="_blank" rel="noreferrer">
                   {project.liveUrl}
@@ -48,7 +48,7 @@ const AdminProjects = () => {
               </button>
               <button
                 onClick={() => deleteHandler(project.id)}
-                className=" text-red-500 hover:scale-105"
+                className=" text-red-500 hover:scale-105 cursor-pointer"
               >
                 <MdDeleteForever className="text-lg" />
               </button>
